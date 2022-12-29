@@ -13,6 +13,9 @@ jobs:
       - name: Check out
         uses: actions/checkout@v3
 
+      - name: Echo
+        run: echo APK on Github Artifacts
+
       - name: Create an Android project
         run: docker-compose -f ./docker-compose.yaml run app ionic cordova create hello com.example.hello hello --confirm --prod --no-interactive --noresources 
 
@@ -26,4 +29,3 @@ jobs:
       #   run: gh release create v$( date +%Y%m%d ) ./src/app/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
       #   env:
       #       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
