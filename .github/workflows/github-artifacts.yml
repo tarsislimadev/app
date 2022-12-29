@@ -13,8 +13,13 @@ jobs:
       - name: Check out
         uses: actions/checkout@v3
 
-      - name: Build .apk
-        uses: brtmvdl/apk
-        env:
-            PATH: ./src/www
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Add Android platform
+      run: docker-compose -f ./docker-compose.yaml run app ionic cordova platform add android --confirm --prod --no-interactive --noresources 
+
+      - name: Build .apk file
+      run: docker-compose -f ./docker-compose.yaml run app ionic cordova build android --release --prod --no-interactive --device 
+
+      # - name: Create release
+      #   run: gh release create v$( date +%Y%m%d ) ./src/app/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+      #   env:
+      #       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
