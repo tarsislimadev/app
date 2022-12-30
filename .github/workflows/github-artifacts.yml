@@ -17,6 +17,6 @@ jobs:
         run: docker-compose build app
 
       - name: Create release
-        run: gh release create v$( date +%Y%m%d%H%M ) ./src/app/hello/platforms/android/app/build/outputs/apk/debug/*.apk
+        run: gh release create v$( date +%Y%m%d%H%M ) ./dist/*.apk
         env:
             GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
