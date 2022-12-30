@@ -13,3 +13,5 @@ COPY html www
 RUN cordova build android
 
 RUN cp /app/hello/platforms/android/app/build/outputs/apk/debug/*.apk /build -rfv 
+
+CMD echo OK
