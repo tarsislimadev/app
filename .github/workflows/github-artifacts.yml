@@ -19,6 +19,9 @@ jobs:
       - name: Create an Android project
         run: docker-compose -f ./docker-compose.yaml run app cordova create hello com.example.hello hello
 
+      - name: List files
+        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ls -la
+
       - name: Add Android platform
         run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic cordova platform add android --confirm --prod --no-interactive --noresources
 
