@@ -13,14 +13,17 @@ jobs:
       - name: Check out
         uses: actions/checkout@v3
 
+      - name: Create an Ionic project
+        run: bash ./env/run-app.sh ionic init hello --type=custom --project-id=com.example.hello
+
       - name: Create an Android project
-        run: bash ./env/run-app.sh ionic cordova create hello com.example.hello hello --confirm --prod --no-interactive --noresources
+        run: bash ./env/run-app.sh ionic cordova create hello com.example.hello hello
 
       - name: List files
         run: bash ./env/run-app.sh ls -lR
 
       # - name: Add Android platform
-      #   run: bash ./env/run-app.sh ionic cordova platform add android --confirm --prod --no-interactive --noresources
+      #   run: bash ./env/run-app.sh ionic cordova platform add android
 
       # - name: Build .apk file
       #   run: bash ./env/run-app.sh ionic cordova build android --release --prod --no-interactive --device
