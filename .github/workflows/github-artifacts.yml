@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'main'
+      - "main"
 
 jobs:
   artifacts:
@@ -13,26 +13,8 @@ jobs:
       - name: Check out
         uses: actions/checkout@v3
 
-      - name: Init project
-        run: docker-compose -f ./docker-compose.yaml run app ionic init --type=custom --project-id=com.example.hello
-
-      - name: Create project
-        run: docker-compose -f ./docker-compose.yaml run app cordova create hello com.example.hello hello --force
-
-      - name: Install packages
-        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app npm init -y
-
-      - name: Install packages
-        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app npm i cordova-res -- --confirm
-
-      - name: Enable cordova
-        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic integrations enable cordova --add --confirm --prod --no-interactive --noresources
-
-      - name: Add Android platform
-        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic cordova platform add android --confirm
-
       - name: Build Android
-        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic cordova build android --release --prod --no-interactive --device --confirm --prod --no-interactive --noresources
+        run: docker-compose -f ./docker-compose.yaml run app bash ./env/build.sh
 
       # - name: Create release
       #   run: gh release create v$( date +%Y%m%d ) ./src/app/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
