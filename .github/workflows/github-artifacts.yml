@@ -14,9 +14,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build Android
-        run: docker-compose -f ./docker-compose.yaml build app
+        run: docker-compose build app
 
-      - name: Create release
-        run: gh release create v$( date +%Y%m%d ) ./build/*.apk
-        env:
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build Android
+        run: ls -la build
+
+      # - name: Create release
+      #   run: gh release create v$( date +%Y%m%d ) ./build/*.apk
+      #   env:
+      #       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
