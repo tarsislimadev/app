@@ -16,7 +16,7 @@ jobs:
       - name: Build Android
         run: bash ./env/build.sh
 
-      # - name: Create release
-      #   run: gh release create v$( date +%Y%m%d ) ./src/app/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
-      #   env:
-      #       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create release
+        run: gh release create v$( date +%Y%m%d ) /build/app-debug.apk
+        env:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
