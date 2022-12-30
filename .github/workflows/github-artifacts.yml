@@ -13,7 +13,7 @@ jobs:
       - name: Check out
         uses: actions/checkout@v3
 
-      - name: Build Android
+      - name: Build app
         run: docker-compose build app
 
       - name: Create release
