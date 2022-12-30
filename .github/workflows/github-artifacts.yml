@@ -25,8 +25,8 @@ jobs:
       - name: Enable cordova
         run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic integrations enable cordova --add --confirm --prod --no-interactive --noresources
 
-      - name: Add Android platform
-        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic cordova platform add android --confirm --prod --no-interactive --noresources
+      # - name: Add Android platform
+      #   run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic cordova platform add android --confirm --prod --no-interactive --noresources
 
       - name: Build .apk file
         run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic cordova build android --release --prod --no-interactive --device --confirm --prod --no-interactive --noresources
