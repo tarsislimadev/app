@@ -13,26 +13,26 @@ jobs:
       - name: Check out
         uses: actions/checkout@v3
 
-      - name: Create an Ionic project
+      - name: Create project
         run: docker-compose -f ./docker-compose.yaml run app ionic init hello --type=custom --project-id=com.example.hello
 
       - name: Create an Android project
         run: docker-compose -f ./docker-compose.yaml run app cordova create hello com.example.hello hello
 
+      - name: Init the project
+        run: docker-compose -f ./docker-compose.yaml run app npm init -y
+
       - name: Enable cordova
-        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic integrations enable cordova --add --confirm --prod --no-interactive --noresources
+        run: docker-compose -f ./docker-compose.yaml run app ionic integrations enable cordova --add --confirm --prod --no-interactive --noresources
 
       - name: Install packages
-        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app npm i
-
-      - name: List files
-        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ls -la
+        run: docker-compose -f ./docker-compose.yaml run app npm i
 
       - name: Add Android platform
-        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic cordova platform add android --confirm --prod --no-interactive --noresources
+        run: docker-compose -f ./docker-compose.yaml run app ionic cordova platform add android --confirm
 
       - name: Build .apk file
-        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic cordova build android --release --prod --no-interactive --device --confirm --prod --no-interactive --noresources
+        run: docker-compose -f ./docker-compose.yaml run app ionic cordova build android --release --prod --no-interactive --device --confirm --prod --no-interactive --noresources
 
       # - name: Create release
       #   run: gh release create v$( date +%Y%m%d ) ./src/app/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
