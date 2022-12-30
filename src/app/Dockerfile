@@ -2,6 +2,12 @@ FROM tmvdl/android:ionic
 
 WORKDIR /app
 
-COPY . .
+RUN cordova create hello com.example.hello
 
-CMD ionic serve
+WORKDIR /app/hello
+
+RUN cordova platform add android
+
+COPY html www
+
+RUN cordova build android
