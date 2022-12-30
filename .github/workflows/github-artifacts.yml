@@ -1,4 +1,4 @@
-name: APK on Github Artifacts
+name: Github Artifacts
 
 on:
   workflow_dispatch:
@@ -16,10 +16,7 @@ jobs:
       - name: Build Android
         run: docker-compose build app
 
-      - name: List .apk file
-        run: find -name '*.apk'
-
-      # - name: Create release
-      #   run: gh release create v$( date +%Y%m%d ) ./build/*.apk
-      #   env:
-      #       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create release
+        run: gh release create v$( date +%Y%m%d ) ./src/app/hello/platforms/android/app/build/outputs/apk/debug/*.apk
+        env:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
