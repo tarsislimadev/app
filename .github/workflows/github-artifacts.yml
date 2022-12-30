@@ -17,7 +17,7 @@ jobs:
         run: docker-compose -f ./docker-compose.yaml run app ionic init --type=custom --project-id=com.example.hello
 
       - name: Create project
-        run: docker-compose -f ./docker-compose.yaml run app cordova create . com.example.hello hello --force
+        run: docker-compose -f ./docker-compose.yaml run app cordova create hello com.example.hello hello --force
 
       - name: Install packages
         run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app npm init -y
