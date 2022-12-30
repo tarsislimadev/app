@@ -20,10 +20,10 @@ jobs:
         run: docker-compose -f ./docker-compose.yaml run app cordova create hello com.example.hello hello
 
       - name: Add Android platform
-        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic cordova platform add android
+        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic cordova platform add android --confirm --prod --no-interactive --noresources
 
       - name: Build .apk file
-        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic cordova build android --release --prod --no-interactive --device
+        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic cordova build android --release --prod --no-interactive --device --confirm --prod --no-interactive --noresources
 
       # - name: Create release
       #   run: gh release create v$( date +%Y%m%d ) ./src/app/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
