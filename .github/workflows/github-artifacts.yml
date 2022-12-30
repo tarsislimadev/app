@@ -22,11 +22,11 @@ jobs:
       - name: Enable cordova
         run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic integrations enable cordova --add --confirm --prod --no-interactive --noresources
 
-      - name: List files
-        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ls -la
-
       - name: Install packages
         run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app npm i
+
+      - name: List files
+        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ls -la
 
       - name: Add Android platform
         run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic cordova platform add android --confirm --prod --no-interactive --noresources
