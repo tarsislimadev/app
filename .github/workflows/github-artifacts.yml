@@ -16,8 +16,8 @@ jobs:
       - name: Build Android
         run: docker-compose build app
 
-      - name: Build Android
-        run: ls -la build
+      - name: List .apk file
+        run: find -name '*.apk'
 
       # - name: Create release
       #   run: gh release create v$( date +%Y%m%d ) ./build/*.apk
