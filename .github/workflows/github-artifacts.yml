@@ -14,16 +14,16 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Create an Ionic project
-        run: docker-compose -f ./docker-compose.yaml run app "ionic init hello --type=custom --project-id=com.example.hello"
+        run: docker-compose -f ./docker-compose.yaml run app ionic init hello --type=custom --project-id=com.example.hello
 
       - name: Create an Android project
-        run: docker-compose -f ./docker-compose.yaml run app "cordova create hello com.example.hello hello"
+        run: docker-compose -f ./docker-compose.yaml run app cordova create hello com.example.hello hello
 
       - name: Add Android platform
-        run: docker-compose -f ./docker-compose.yaml run app "cd ./hello && ionic cordova platform add android"
+        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic cordova platform add android
 
       - name: Build .apk file
-        run: docker-compose -f ./docker-compose.yaml run app "cd ./hello && ionic cordova build android --release --prod --no-interactive --device"
+        run: docker-compose -f ./docker-compose.yaml run --workdir /app/hello app ionic cordova build android --release --prod --no-interactive --device
 
       # - name: Create release
       #   run: gh release create v$( date +%Y%m%d ) ./src/app/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
