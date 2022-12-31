@@ -2,6 +2,8 @@ name: Github Release
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '50 23 * * *'
   push:
     branches:
       - 'main'
