@@ -1,4 +1,4 @@
-name: Docker Hub
+name: Docker push
 
 on:
   workflow_dispatch:
