@@ -2,7 +2,7 @@ FROM tmvdl/android:ionic
 
 WORKDIR /app
 
-RUN cordova create app com.brtmvdl.app app
+RUN cordova create app com.example.app app
 
 WORKDIR /app/app
 

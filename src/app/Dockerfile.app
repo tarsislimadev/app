@@ -2,18 +2,12 @@ FROM tmvdl/android:ionic
 
 WORKDIR /app
 
-RUN cordova create hello com.example.hello
+RUN cordova create app com.example.app
 
-WORKDIR /app/hello
-
-RUN cordova platform add android
+WORKDIR /app/app
 
 COPY html www
 
+RUN cordova platform add android
+
 RUN cordova build android
-
-WORKDIR /dist
-
-RUN cp /app/hello/platforms/android/app/build/outputs/apk/debug/*.apk . -rfv 
-
-CMD echo OK
