@@ -3,9 +3,6 @@ name: GitHub release
 on:
   schedule:
     - cron: '50 23 * * 1'
-  push:
-    branches:
-      - 'main'
   workflow_dispatch:
 
 jobs:
