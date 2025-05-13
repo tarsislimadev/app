@@ -1,7 +1,6 @@
 version: '3'
 
 services:
-
   www:
     image: 'tmvdl/projects:app'
     build: './src/app'
@@ -9,7 +8,12 @@ services:
       - './src/app/html:/usr/share/nginx/html'
     ports:
       -  '80:80'
-
-  github-release:
+  browser:
+    build: './src/app'
+    volumes:
+      - './src/app/html:/app/app/www'
+    ports:
+      -  '8000:8000'
+  android:
     image: 'github-release'
     build: './src'
